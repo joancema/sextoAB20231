@@ -1,0 +1,57 @@
+const platos=[
+    { id:1, descripcion:'Encebollado', idrestaurante:1  },
+    { id:2, descripcion:'Ceviche', idrestaurante:1  },
+    { id:3, descripcion:'Tigrillo', idrestaurante:2  },
+    { id:4, descripcion:'Bolon de mani', idrestaurante:2  },
+]
+const restaurantes=[
+    {id:1, nombre:'Mi restaurante'},
+    {id:2, nombre:'El secreto de Tere'},
+    {id:3, nombre:'El misterio'},
+]
+
+
+function buscarPlatoPorId(id, callback)
+{
+    const plato = platos.find(plato=> plato.id===id);
+    if (!plato)
+    {
+        const error =  new Error();
+        error.message=`No se encontró el plato con ID ${id}`
+        return callback(error)
+    }
+    return callback(null, plato)
+}
+
+function buscarRestaurantePorId(id, callback){
+    const restaurante = restaurantes.find(restaurante=> restaurante.id===id);
+    if (!restaurante)
+    {
+        const error= new Error();
+        error.message=`El restaurante con id ${id} no pudo ser encontrado`
+        return callback(error)
+    }
+    return callback(null, restaurante)
+}
+
+
+
+
+
+buscarPlatoPorId(2, ( err, plato )=>{
+    if (err)
+    {
+        console.log(err.message);
+        return;
+    }
+    buscarRestaurantePorId(plato.idrestaurante, (err, restaurante)=>{
+        if (err)
+        {
+            console.log(err.message);
+            return;
+        }
+        plato.restaurante= restaurante
+        delete plato.idrestaurante;
+        console.log(plato);
+    })
+}  ) 
