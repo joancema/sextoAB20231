@@ -1,3 +1,5 @@
+
+
 const platos=[
     { id:1, descripcion:'Encebollado', idrestaurante:1  },
     { id:2, descripcion:'Ceviche', idrestaurante:1  },
