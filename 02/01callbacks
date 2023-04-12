@@ -5,9 +5,14 @@ const platos=[
     { id:4, descripcion:'Bolon de mani', idrestaurante:2  },
 ]
 const restaurantes=[
-    {id:1, nombre:'Mi restaurante'},
-    {id:2, nombre:'El secreto de Tere'},
-    {id:3, nombre:'El misterio'},
+    {id:1, nombre:'Mi restaurante', idpais:1},
+    {id:2, nombre:'El secreto de Tere', idpais:1},
+    {id:3, nombre:'El misterio', idpais:2},
+]
+
+const paises=[
+    {id:1, nombre: 'Ecuador'},
+    {id:2, nombre: 'Perú'},
 ]
 
 
@@ -33,6 +38,14 @@ function buscarRestaurantePorId(id, callback){
     }
     return callback(null, restaurante)
 }
+function buscarPaisPorId(id, callback){
+    const pais =  paises.find(pais=> pais.id=== id);
+    if (!pais)
+    {
+        return callback(new Error(`No se encontró el país con ID ${id} , busque con otro ID`))
+    }
+    return callback(null, pais)
+}
 
 
 
@@ -53,5 +66,13 @@ buscarPlatoPorId(2, ( err, plato )=>{
         plato.restaurante= restaurante
         delete plato.idrestaurante;
         console.log(plato);
+        buscarPaisPorId(restaurante.idpais, (err, pais) =>{
+            if (err)
+            {
+                console.log(err.message);
+                return;
+            }
+            plato.restaurante.pais= pais;
+        })
     })
 }  ) 
