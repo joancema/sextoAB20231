@@ -5,10 +5,13 @@ const books= [
     {id:3, title:'Angular desde 0', idauthor:2},
 ]
 const authors=[
-    {id: 1, name:'Andres Marquez'},
-    {id: 2, name:'Juan de la Torre'},
+    {id: 1, name:'Andres Marquez', idcity:1},
+    {id: 2, name:'Juan de la Torre', idcity:2},
 ]
-
+const citys =[
+    {id:1, name:'Ecuador'},
+    {id:2, name:'Chile'},
+]
 
 
 function findBookForId(id, callback){
@@ -19,7 +22,7 @@ function findBookForId(id, callback){
         error.message=`Libro con id  ${id} no fue encontrado`
         return callback(error)
     }
-    return callback(null, book)
+    return callback(null, book);
 }
 function findAuthorForId(id,callback){
     const author =  authors.find(author => author.id=== id)
@@ -31,6 +34,15 @@ function findAuthorForId(id,callback){
     }
     return callback(null, author)
     
+}
+function findCityForId(id, callback)
+{
+    const city  =  citys.find(city=> city.id===id);
+    if (!city)
+    {
+        return callback(new Error(`La ciudad con id ${id} no fue encontrada`))
+    }
+    return callback(null, city );
 }
 
 
@@ -49,6 +61,13 @@ findBookForId(3, (err, book)=>{
         book.authorFull= author;
         delete book.idauthor;
         console.log(book);
+        findCityForId(author.id, (err, city)=>{
+            if (err)
+            {
+                return console.log(err.message)
+            }
+            book.authorFull.CityFull= city;
+        })
     })
 })
 
