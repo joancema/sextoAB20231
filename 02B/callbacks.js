@@ -60,13 +60,14 @@ findBookForId(3, (err, book)=>{
         // findCountryForId
         book.authorFull= author;
         delete book.idauthor;
-        console.log(book);
+        
         findCityForId(author.id, (err, city)=>{
             if (err)
             {
                 return console.log(err.message)
             }
             book.authorFull.CityFull= city;
+            console.log(book);
         })
     })
 })
