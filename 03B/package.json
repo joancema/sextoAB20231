@@ -1,0 +1,20 @@
+{
+  "name": "03b",
+  "version": "1.0.0",
+  "description": "proyecto de base de datos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "base",
+    "de",
+    "datos",
+    "conexion"
+  ],
+  "author": "JohnCevallos",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^7.0.4"
+  }
+}
