@@ -17,7 +17,7 @@ app.get('/', (req, res)=>{
 // GET INDIVIDUAL -> Consulta pero de un solo elemento
 app.get('/:identificacion', (req,res)=>{
     const {identificacion} =  req.params
-    const studentsFilter =  students.filter(p=> p.identificacion === identificacion)
+    const studentsFilter =  students.filter(p=> p.identificacion.toString() === identificacion.toString())
     if (studentsFilter.length>0)
     {
         res.status(200).send(studentsFilter[0])
@@ -54,7 +54,7 @@ app.put('/',(req,res)=>{
 
 app.delete('/:identificacion',(req, res)=>{
     const { identificacion }  =  req.params
-    students =  students.filter(p=> p.identificacion !== identificacion)
+    students =  students.filter(p=> p.identificacion.toString() !== identificacion.toString())
     res.status(200).send({
         message:'Se eliminó el elemento correctamente'
     })
