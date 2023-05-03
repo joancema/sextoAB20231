@@ -20,7 +20,7 @@ app.get('/:identificacion', (req,res)=>{
     const studentsFilter =  students.filter(p=> p.identificacion.toString() === identificacion.toString())
     if (studentsFilter.length>0)
     {
-        res.status(200).send(studentsFilter[0])
+        return res.status(200).send(studentsFilter[0])
     }
     res.status(403).send({
         message:'No pudo ser encontrado el recurso'
