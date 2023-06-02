@@ -51,9 +51,30 @@ const createCategory = async (req, res = response)=>{
     //enviar respuesta
     res.status(201).json(categoryNew)
 }
-
-
 //put
+const updateCategory = async  (req,  res= response)=>{
+    const  {id} =  req.params;
+    const { status,  ...data } =   req.body;
+    const categoryUpdated =await 
+      Category.findByIdAndUpdate(id, data, {new:true});
+    res.json(categoryUpdated);
+}
+
+//delete  http://localhost:3000/api/category/1
+const deleteCategory = async (req,res=response)=>{
+    const  {id} =  req.params;
+    const categoryDeleted =await 
+      Category.findByIdAndUpdate(id, {status:false}, {new:true});
+
+      res.json(categoryDeleted);
+
+}
 
 
-//delete
+module.exports= {
+    getCategories,
+    getCategory,
+    createCategory,
+    updateCategory,
+    deleteCategory
+}
