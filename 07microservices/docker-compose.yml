@@ -1,0 +1,37 @@
+version: '3'
+
+
+services:
+  categories:
+    build: ./categories
+    depends_on:
+      - datacategories
+    environment:
+      - PORT=2500
+      - MONGODB_CNN=mongodb://datacategories:27017/test
+    # ports:
+    #   - "2500:2500"
+  products:
+    build: ./products
+    depends_on:
+      - datacategories
+    environment:
+      - PORT=2500
+      - MONGODB_CNN=mongodb://datacategories:27017/test
+  datacategories:
+    image: mongo
+    # ports:
+    #   - "27017:27017"
+  dataproducts:
+    image: mongo
+    # ports:
+    #   - "27017:27017"
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - categories
+      - products

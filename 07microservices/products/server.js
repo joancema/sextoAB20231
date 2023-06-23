@@ -15,7 +15,6 @@ class Server
 
         this.paths = {
             products: '/api/products',
-            categories: '/api/categories'
         }
 
         this.connectDB();
@@ -36,7 +35,6 @@ class Server
     }
     routes(){
         this.app.use(this.paths.products, require('./routes/products')   )
-        this.app.use(this.paths.categories, require('./routes/categories')   )
     }
 
     listen(){
