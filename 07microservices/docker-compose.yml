@@ -14,10 +14,10 @@ services:
   products:
     build: ./products
     depends_on:
-      - datacategories
+      - dataproducts
     environment:
       - PORT=2500
-      - MONGODB_CNN=mongodb://datacategories:27017/test
+      - MONGODB_CNN=mongodb://dataproducts:27017/test
   datacategories:
     image: mongo
     # ports:
