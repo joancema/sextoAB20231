@@ -50,7 +50,7 @@ btnnew.addEventListener('click',()=>{
 
 btnsave.addEventListener('click', async ()=>{
   const data:IProduct = {
-    _id:txtid.value,
+    // _id:txtid.value,
     name: txtname.value,
     cost:  Number(txtid.value),
     price: Number( txtprice.value),
@@ -83,7 +83,7 @@ btnquery.addEventListener('click',async ()=>{
        const data:IProducts  =  (await axiosHTTP.get<IProducts>(`products`)).data;
 
        data.products.forEach((ele)=>{
-          // ele.
+          console.log(ele)
        })
 })
 

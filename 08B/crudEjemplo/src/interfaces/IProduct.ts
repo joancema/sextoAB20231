@@ -4,7 +4,7 @@ export interface IProducts {
 }
 
 export interface IProduct {
-    _id:     string;
+    _id?:     string;
     name:    string;
     cost:    number;
     price:   number;
