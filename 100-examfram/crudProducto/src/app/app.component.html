@@ -1,0 +1,25 @@
+
+
+<div>
+  <form #loginForm="ngForm" (ngSubmit)="submitData(loginForm.value)">
+    <div class="main">
+      <div class="input-fields">
+        <input name="name" ngModel placeholder="Nombre" id="name" type="text" class="input-field" />
+      </div>
+      <div class="input-fields">
+        <input name="cost" ngModel placeholder="Costo" id="cost" type="number" class="input-field" />
+      </div>
+      <div class="input-fields">
+        <input name="price" ngModel placeholder="Precio" id="price" type="number" class="input-field" />
+      </div>
+      <div class="input-fields">
+        <input name="minimum" ngModel placeholder="Mínimo" id="minimum" type="number" class="input-field" />
+      </div>
+      <button>Create Data </button>
+    </div>
+  </form>
+  
+</div>
+
+
+<router-outlet></router-outlet>
