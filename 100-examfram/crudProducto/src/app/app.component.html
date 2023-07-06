@@ -18,7 +18,18 @@
       <button>Create Data </button>
     </div>
   </form>
-  
+  <table border="1">
+    <thead>
+      <th>Nombre</th>
+      <th>Precio</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of dataProducts.products">
+        <td>{{product.name}}</td>
+        <td>{{product.price}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 

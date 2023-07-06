@@ -1,22 +1,37 @@
 import { Component } from '@angular/core';
 import { ProductosService } from './services/productos.service';
+import { IProducts } from './interfaces/IProducto';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
+
 export class AppComponent {
+
+
+  dataProducts:IProducts = { sum:0, products:[] };
+  title:string = 'Productos';
+
   constructor(
     private productosService: ProductosService
-  ) { }
-  title = 'crudProducto';
+  ) { 
+    
+  }
+
+  
+  
+  
+  
+
   ngOnInit() {
-    this.productosService.getAllData()
+     this.productosService.getAllData()
       .subscribe(data => {
-        console.log(data)
+        this.dataProducts= data;
       })
   }
+  
   submitData(value: any) {
     let body = {
       name: value.name,
