@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductosService } from './services/productos.service';
-import { IProducts } from './interfaces/IProducto';
+import { IProduct, IProducts } from './interfaces/IProducto';
 
 @Component({
   selector: 'app-root',
@@ -19,21 +19,14 @@ export class AppComponent {
   ) { 
     
   }
-
-  
-  
-  
-  
-
   ngOnInit() {
      this.productosService.getAllData()
       .subscribe(data => {
         this.dataProducts= data;
       })
   }
-  
-  submitData(value: any) {
-    let body = {
+  submitData(value: IProduct) {
+    let body:IProduct = {
       name: value.name,
       cost: value.cost,
       price: value.price,

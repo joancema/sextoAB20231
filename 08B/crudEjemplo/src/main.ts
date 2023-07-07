@@ -25,7 +25,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 <button id='btnnew' >NUEVO</button>
 <button id='btnsave' >GUARDAR</button>
 <button id='btnquery' >CONSULTAR</button>
-
+<div id='query'></div>
 `
 //#region 
 const txtid =  document.querySelector<HTMLInputElement>('#txtid')!;
@@ -38,6 +38,7 @@ const txtminimum =  document.querySelector<HTMLInputElement>('#txtminimum')!;
 const btnnew =  document.querySelector<HTMLButtonElement>('#btnnew')!;
 const btnsave =  document.querySelector<HTMLButtonElement>('#btnsave')!;
 const btnquery =  document.querySelector<HTMLButtonElement>('#btnquery')!;
+const divquery = document.querySelector<HTMLDivElement>('#query')!;
 //#endregion
 
 btnnew.addEventListener('click',()=>{
@@ -82,9 +83,17 @@ btnsave.addEventListener('click', async ()=>{
 btnquery.addEventListener('click',async ()=>{
        const data:IProducts  =  (await axiosHTTP.get<IProducts>(`products`)).data;
 
+       divquery.innerHTML+='<table>'
        data.products.forEach((ele)=>{
-          console.log(ele)
+          // console.log(ele)
+          // divquery.innerHTML+= `${ele.name} ${ele.cost} ${ele.price}`
+          divquery.innerHTML+='<tr>'
+          divquery.innerHTML+=`<td>${ele.name}</td>`
+          divquery.innerHTML+=`<td>${ele.cost}</td>`
+          divquery.innerHTML+=`<td>${ele.price}</td>`
+          divquery.innerHTML+='</tr>'
        })
+       divquery.innerHTML+='</table>'
 })
 
 
